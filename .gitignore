@@ -1,6 +1,5 @@
-.DS_store
 *.out
 *.log
 *.aux
 *.toc
-*.pdf
+/*.pdf

@@ -14,7 +14,7 @@
 % (http://www.math.ku.dk/~m00cha/), however translated all call to their
 % English equivalant and included newer logos.
 %------------------------------------------------------------------------------
-\ProvidesPackage{ku-frontpage}[2017/07/12 v0.2 Frontpages with University of Copenhagen logos]
+\ProvidesPackage{ku-frontpage}[2017/07/12 v0.21 Frontpages with University of Copenhagen logos]
 
 %%% Define 'if''s for style.
 \newif\if@kutitlepage\@kutitlepagefalse \DeclareOption{titlepage}{\@kutitlepagetrue}
@@ -65,17 +65,15 @@
 \RequirePackage[absolute]{textpos}
 \TPGrid{12}{24}
 
+%%% Include hyperref for PDF attributes. These are set after document is begun,
+%%% to include the title, subtitle, and author.
+\RequirePackage{hyperref}
 \AtBeginDocument{
-  % Lets not crash, if the user has newlines in title, subtitle, or author.
-  \let\\=\relax
-  \let\newline=\relax
-  \let\medskip=\relax
-  \let\bigskip=\relax
-  \RequirePackage[
+  \hypersetup{
     pdftitle={\TITLE},
     pdfsubject={\SUBTITLE},
     pdfauthor={\AUTHOR}
-  ]{hyperref}
+  }
 }
 
 %%% Define custom methods for frontpage.

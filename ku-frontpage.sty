@@ -61,7 +61,16 @@
 \RequirePackage{ifthen}
 \RequirePackage[a4paper, hmargin={55pt, 55pt}, vmargin={2.8cm, 2.8cm}]{geometry}
 
+%%% Define the page to have 12 horizontal modules and 24 vertical modules.
+\RequirePackage[absolute]{textpos}
+\TPGrid{12}{24}
+
 \AtBeginDocument{
+  % Lets not crash, if the user has newlines in title, subtitle, or author.
+  \let\\=\relax
+  \let\newline=\relax
+  \let\medskip=\relax
+  \let\bigskip=\relax
   \RequirePackage[
     pdftitle={\TITLE},
     pdfsubject={\SUBTITLE},
@@ -105,14 +114,23 @@
       }
     }
 
-    \AddToShipoutPicture*{\put(55, 270){\fontsize{20 pt}{22 pt} \KUbold \ASSIGNMENT}}
-    \AddToShipoutPicture*{\put(55, 242){\fontsize{14 pt}{16 pt} \KUsemibold \AUTHOR}}
+    \begin{textblock}{10}(1.14, 15.9)
+      \noindent\fontsize{20pt}{22pt}\KUbold\ASSIGNMENT
+      \par\vspace{4mm}
+      \noindent\fontsize{14pt}{16pt}\KUsemibold\AUTHOR
+    \end{textblock}
 
-    \AddToShipoutPicture*{\put(55, 188){\fontsize{22 pt}{24 pt} \KUsemibold \TITLE}}
-    \AddToShipoutPicture*{\put(55, 160){\fontsize{14 pt}{16 pt} \KUsemibold \SUBTITLE}}
+    \begin{textblock}{10}(1.14, 18.2)
+      \noindent\fontsize{22pt}{24pt}\KUsemibold\TITLE
+      \par\vspace{2mm}
+      \noindent\fontsize{14pt}{16pt}\KUsemibold\SUBTITLE
+    \end{textblock}
 
-    \AddToShipoutPicture*{\put(55, 85){\fontsize{11 pt}{12 pt} \KUsemibold \ADVISOR}}
-    \AddToShipoutPicture*{\put(55, 57){\fontsize{11 pt}{12 pt} \KUsemibold \DATE}}
+    \begin{textblock}{10}(1.14, 21.35)
+      \noindent\fontsize{11pt}{12pt}\KUsemibold\ADVISOR
+      \par\vspace{5mm}
+      \noindent\fontsize{11pt}{12pt}\KUsemibold\DATE
+    \end{textblock}
 
     \phantom{...}
     \newpage

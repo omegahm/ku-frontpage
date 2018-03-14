@@ -27,6 +27,7 @@
 
 %%% Define 'if''s for faculties.
 \newif\if@science                       \DeclareOption{science}{\@sciencetrue}
+\newif\if@sund                          \DeclareOption{sund}{\@sundtrue}
 \newif\if@ku                            \DeclareOption{ku}{\@kutrue}
 
 %%% Warning about unknown options
@@ -51,6 +52,7 @@
 \if@kudanish    \def\KULANG{danish}     \fi
 
 \if@science     \def\KUFACULTY{science} \fi
+\if@sund        \def\KUFACULTY{sund}    \fi
 \if@ku          \def\KUFACULTY{ku}      \fi
 
 %%% Some packages are required for this package.

@@ -59,3 +59,8 @@ The large and small design can be used for everyday assignments handed in to you
 
 The UCPH logo is protected by a European patent.
 For more information go to the official design guide: http://designguide.ku.dk/ku/om_design/varemaerkebeskyttelse/
+
+## Alternative package
+
+An alternative package is avaiable on the online collaboration platform [ShareLaTeX](https://www.sharelatex.com/project/57daf1247c5f29b427eb1f6f),  along with an example on how to use it.
+The contents of the ShareLaTeX-project is also included in this repository as a zip-file, but you should preferably grab it from ShareLaTeX, since it's more likely to include updates than the one shipped with this repository.

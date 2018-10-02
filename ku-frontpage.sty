@@ -84,7 +84,7 @@
 \def\SUBTITLE{Use \texttt{$\backslash$subtitle$\lbrace \ldots \rbrace$}}
 \def\ADVISOR{Use \texttt{$\backslash$advisor$\lbrace \ldots \rbrace$}}
 \def\DATE{Use \texttt{$\backslash$date$\lbrace \ldots \rbrace$}}
-\def\FRONTPAGEIMAGE{...}
+\def\FRONTPAGEIMAGE{}
 
 %%% Some of the above methods already exists. We override these.
 \renewcommand{\author}[1]{\def\AUTHOR{#1}}
@@ -107,7 +107,7 @@
     \AddToShipoutPicture*{\put( 0, -35){\includegraphics*{logos/\KUFACULTY-logo}}}
     \AddToShipoutPicture*{\put(-8,   8){\includegraphics*{logos/\KUFACULTY-\KULANG}}}
 
-    \ifthenelse{\equal{\FRONTPAGEIMAGE}{...}}{}{
+    \ifthenelse{\equal{\FRONTPAGEIMAGE}{}}{}{
       \AddToShipoutPicture*{
         \AtPageUpperLeft{\raisebox{-185mm}{\hspace{55pt}\includegraphics*[width=\textwidth, height=100mm, keepaspectratio]{\FRONTPAGEIMAGE}}}
       }

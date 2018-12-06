@@ -30,6 +30,10 @@
 \newif\if@sund                          \DeclareOption{sund}{\@sundtrue}
 \newif\if@ku                            \DeclareOption{ku}{\@kutrue}
 
+%%% Define 'if''s for other things.
+\newif\if@hyperref                      \DeclareOption{hyperref}{\@hyperreftrue}
+\newif\if@dropcaps                      \DeclareOption{dropcaps}{\@dropcapstrue}
+
 %%% Warning about unknown options
 \DeclareOption*{
   \ClassWarning{ku-frontpage}{Unknown option '\CurrentOption'}
@@ -62,20 +66,17 @@
 \RequirePackage{times}
 \RequirePackage{ifthen}
 
+\definecolor{KU}{HTML}{901A1E}
+\definecolor{KUscience}{HTML}{46743C}
+\definecolor{KUsund}{HTML}{2A216A}
+
+\if@science \def\KUCOLOR{KUscience} \fi
+\if@sund    \def\KUCOLOR{KUsund}    \fi
+\if@ku      \def\KUCOLOR{KU}        \fi
+
 %%% Define the page to have 12 horizontal modules and 24 vertical modules.
 \RequirePackage[absolute]{textpos}
 \TPGrid{12}{24}
-
-%%% Include hyperref for PDF attributes. These are set after document is begun,
-%%% to include the title, subtitle, and author.
-\RequirePackage{hyperref}
-\AtBeginDocument{
-  \hypersetup{
-    pdftitle={\TITLE},
-    pdfsubject={\SUBTITLE},
-    pdfauthor={\AUTHOR}
-  }
-}
 
 %%% Define custom methods for frontpage.
 \def\ASSIGNMENT{Use \texttt{$\backslash$assignment$\lbrace \ldots \rbrace$}}
@@ -96,6 +97,57 @@
 \newcommand{\subtitle}[1]{\def\SUBTITLE{#1}}
 \newcommand{\advisor}[1]{\def\ADVISOR{#1}}
 \newcommand{\frontpageimage}[1]{\def\FRONTPAGEIMAGE{#1}}
+
+%%% Include hyperref for PDF attributes.
+\if@hyperref
+  \RequirePackage{hyperref}
+  \newcommand{\kupdfsetup}[3]{
+    \hypersetup{
+      pdftitle={#1},
+      pdfsubject={#2},
+      pdfauthor={#3},
+      colorlinks=true,
+      citecolor={\KUCOLOR},
+      linkcolor={\KUCOLOR},
+      urlcolor={\KUCOLOR},
+    }
+  }
+\fi
+
+%%% Define drop caps
+\if@dropcaps
+  \RequirePackage{lettrine}
+
+  \renewcommand\LettrineFontHook{\color{\KUCOLOR}}
+  \renewcommand{\DefaultOptionsFile}{NoFileOnPurposeHack.cfg}
+
+  \LettrineOptionsFor{A}{loversize= 0.05,lhang= 0.10,findent= 0.000\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{B}{loversize= 0.10,lhang= 0.30,findent= 0.025\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{C}{loversize= 0.00,lhang= 0.15,findent= 0.175\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{D}{loversize= 0.10,lhang= 0.30,findent=-0.025\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{E}{loversize= 0.10,lhang= 0.10,findent= 0.100\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{F}{loversize= 0.10,lhang= 0.30,findent= 0.100\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{G}{loversize=-0.08,lhang= 0.10,findent= 0.000\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{H}{loversize=-0.01,lhang= 0.00,findent= 0.040\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{I}{loversize= 0.10,lhang= 0.00,findent= 0.050\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{J}{loversize=-0.08,lhang= 0.00,findent=-0.025\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{K}{loversize=-0.05,lhang= 0.00,findent=-0.050\LettrineWidth,nindent= 0.60\LettrineWidth}
+  \LettrineOptionsFor{L}{loversize= 0.00,lhang= 0.00,findent= 0.100\LettrineWidth,nindent= 0.40\LettrineWidth}
+  \LettrineOptionsFor{M}{loversize= 0.10,lhang= 0.40,findent= 0.040\LettrineWidth,nindent= 0.10\LettrineWidth}
+  \LettrineOptionsFor{N}{loversize= 0.00,lhang= 0.20,findent=-0.010\LettrineWidth,nindent= 0.40\LettrineWidth}
+  \LettrineOptionsFor{O}{loversize= 0.10,lhang= 0.20,findent=-0.010\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{P}{loversize= 0.10,lhang= 0.30,findent= 0.050\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{Q}{loversize= 0.00,lhang= 0.20,findent= 0.050\LettrineWidth,nindent= 0.70\LettrineWidth}
+  \LettrineOptionsFor{R}{loversize=-0.05,lhang= 0.25,nindent= 0.500\LettrineWidth,nindent= 0.50\LettrineWidth}
+  \LettrineOptionsFor{S}{loversize= 0.10,lhang= 0.00,findent= 0.000\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{T}{loversize= 0.10,lhang= 0.35,findent= 0.100\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{U}{loversize= 0.10,lhang= 0.20,findent= 0.050\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{V}{loversize= 0.10,lhang= 0.40,findent= 0.050\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{W}{loversize= 0.10,lhang= 0.30,findent= 0.040\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{X}{loversize= 0.10,lhang= 0.40,findent= 0.040\LettrineWidth,nindent= 0.20\LettrineWidth}
+  \LettrineOptionsFor{Y}{loversize= 0.10,lhang= 0.20,findent= 0.100\LettrineWidth,nindent= 0.20\LettrineWidth}
+  \LettrineOptionsFor{Z}{loversize=-0.05,lhang= 0.00,findent= 0.050\LettrineWidth,nindent= 0.55\LettrineWidth}
+\fi
 
 %%% Define the three types of frontpage
 \if@kutitlepage

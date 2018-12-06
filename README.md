@@ -8,33 +8,42 @@ The Microsoft Word templates can be found at http://designguide.ku.dk/.
 ## Installation
 
 Just copy the `ku-frontpage.sty` and the `logos` folder into your current working directory.
-You can then include the pacakge with for example:
+You can then include the package with for example:
 
-    \usepackage[english, science, titlepage]{ku-frontpage}
+```latex
+\usepackage[english, science, titlepage]{ku-frontpage}
+```
 
 ## Options
 
 ##### Options when including the package
 
-Name     | Available options             | Default     | Notes
----      | ---                           | ---         | ---
-Layout   | `titlepage`, `large`, `small` | `titlepage` |
-Language | `english`, `danish`           | `english`   | Will also include the `babel` package with the same option.
-Faculty  | `science`, `ku`               | `science`   | Will change the logo and text at the top of the page accordingly.
+Name       | Available options             | Default     | Notes
+---        | ---                           | ---         | ---
+Layout     | `titlepage`, `large`, `small` | `titlepage` |
+Language   | `english`, `danish`           | `english`   | Will also include the `babel` package with the same option.
+Faculty    | `science`, `sund`, `ku`       | `science`   | Will change the logo and text at the top of the page accordingly.
+Hyperref?  | `hyperref`                    |             | Enables the hyperref package and sets default.
+Drop caps? | `dropcaps`                    |             | Will allow you to include drop caps with `\lettrine{D}{rop caps}`.
 
 ##### Commands for changing the text
 
-Name                   | Function                           | Example
----                    | ---                                | ---
-`\assignment{...}`     | Sets the assignment type.          | `\assignment{PhD thesis}`
-`\author{...}`         | Sets the author.                   | `\author{Mads Ohm Larsen}`
-`\title{...}`          | Sets the title of the document.    | `\title{Quasicrystal Simulation}`
-`\subtitle{...}`       | Sets the subtitle of the document. | `\subtitle{An investigation}`
-`\date{...}`           | Sets the date of the document.     | `\date{Handed in: \today}`
-`\advisor{...}`        | Sets the advisor.                  | `\advisor{Advisor: Anders Andersen}`
-`\frontpageimage{...}` | Sets the image for the titlepage   | `\frontpageimage{example.png}`
+Name                         | Function                                                                    | Example
+---                          | ---                                                                         | ---
+`\assignment{...}`           | Sets the assignment type.                                                   | `\assignment{PhD thesis}`
+`\author{...}`               | Sets the author.                                                            | `\author{Mads Ohm Larsen}`
+`\title{...}`                | Sets the title of the document.                                             | `\title{Quasicrystal Simulation}`
+`\subtitle{...}`             | Sets the subtitle of the document.                                          | `\subtitle{An investigation}`
+`\date{...}`                 | Sets the date of the document.                                              | `\date{Handed in: \today}`
+`\advisor{...}`              | Sets the advisor.                                                           | `\advisor{Advisor: Anders Andersen}`
+`\frontpageimage{...}`       | Sets the image for the titlepage                                            | `\frontpageimage{example.png}`
+`\kupdfsetup{...}{...}{...}` | Sets various information in the result PDF. Requires the `hyperref` option. | `\kupdfsetup{My title}{My subject}{My name}`
 
 You can disable a command, by setting it to nothing, for example if you do not want a subtitle, you can use `\subtitle{}`.
+
+Three colors are also defined as well as a setting for current color.
+These are `KU`, `KUsund`, and `KUscience`.
+Using `\KUCOLOR` will give you the current color, as specified by the selected faculty.
 
 ## Examples
 
